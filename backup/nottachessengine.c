@@ -1,3 +1,5 @@
+// vice.c
+
 #include "defs.h"
 #include "stdio.h"
 #include "stdlib.h"
@@ -8,7 +10,8 @@
 #define PERFT \
   "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1"
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[])
+{
   AllInit();
 
   S_BOARD pos[1];
@@ -21,35 +24,50 @@ int main(int argc, char* argv[]) {
 
   int ArgNum = 0;
 
-  for (ArgNum = 0; ArgNum < argc; ++ArgNum) {
-    if (strncmp(argv[ArgNum], "NoBook", 6) == 0) {
+  for (ArgNum = 0; ArgNum < argc; ++ArgNum)
+  {
+    if (strncmp(argv[ArgNum], "NoBook", 6) == 0)
+    {
       EngineOptions->UseBook = FALSE;
       printf("Book Off\n");
     }
   }
 
-  printf("Welcome to NottAChessEngine! Type 'nott' for console mode...\n");
+  printf("Welcome to NottAChessEngine! Type 'NottAChessEngine' for console mode...\n");
 
   char line[256];
-  while (TRUE) {
+  while (TRUE)
+  {
     memset(&line[0], 0, sizeof(line));
 
     fflush(stdout);
-    if (!fgets(line, 256, stdin)) continue;
-    if (line[0] == '\n') continue;
-    if (!strncmp(line, "uci", 3)) {
+    if (!fgets(line, 256, stdin))
+      continue;
+    if (line[0] == '\n')
+      continue;
+    if (!strncmp(line, "uci", 3))
+    {
       Uci_Loop(pos, info);
-      if (info->quit == TRUE) break;
+      if (info->quit == TRUE)
+        break;
       continue;
-    } else if (!strncmp(line, "xboard", 6)) {
+    }
+    else if (!strncmp(line, "xboard", 6))
+    {
       XBoard_Loop(pos, info);
-      if (info->quit == TRUE) break;
+      if (info->quit == TRUE)
+        break;
       continue;
-    } else if (!strncmp(line, "nott", 4)) {
+    }
+    else if (!strncmp(line, "nott", 4))
+    {
       Console_Loop(pos, info);
-      if (info->quit == TRUE) break;
+      if (info->quit == TRUE)
+        break;
       continue;
-    } else if (!strncmp(line, "quit", 4)) {
+    }
+    else if (!strncmp(line, "quit", 4))
+    {
       break;
     }
   }

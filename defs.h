@@ -12,7 +12,8 @@
 #define ASSERT(n)
 #else
 #define ASSERT(n)                     \
-  if (!(n)) {                         \
+  if (!(n))                           \
+  {                                   \
     printf("%s - Failed", #n);        \
     printf("On %s ", __DATE__);       \
     printf("At %s ", __TIME__);       \
@@ -24,7 +25,7 @@
 
 typedef unsigned long long U64;
 
-#define NAME "Vice 1.1"
+#define NAME "NottAChessEngine 1.0"
 #define BRD_SQ_NUM 120
 
 #define MAXGAMEMOVES 2048
@@ -36,8 +37,24 @@ typedef unsigned long long U64;
 #define INFINITE 30000
 #define ISMATE (INFINITE - MAXDEPTH)
 
-enum { EMPTY, wP, wN, wB, wR, wQ, wK, bP, bN, bB, bR, bQ, bK };
-enum {
+enum
+{
+  EMPTY,
+  wP,
+  wN,
+  wB,
+  wR,
+  wQ,
+  wK,
+  bP,
+  bN,
+  bB,
+  bR,
+  bQ,
+  bK
+};
+enum
+{
   FILE_A,
   FILE_B,
   FILE_C,
@@ -48,7 +65,8 @@ enum {
   FILE_H,
   FILE_NONE
 };
-enum {
+enum
+{
   RANK_1,
   RANK_2,
   RANK_3,
@@ -60,9 +78,20 @@ enum {
   RANK_NONE
 };
 
-enum { WHITE, BLACK, BOTH };
-enum { UCIMODE, XBOARDMODE, CONSOLEMODE };
-enum {
+enum
+{
+  WHITE,
+  BLACK,
+  BOTH
+};
+enum
+{
+  UCIMODE,
+  XBOARDMODE,
+  CONSOLEMODE
+};
+enum
+{
   A1 = 21,
   B1,
   C1,
@@ -131,23 +160,42 @@ enum {
   OFFBOARD
 };
 
-enum { FALSE, TRUE };
+enum
+{
+  FALSE,
+  TRUE
+};
 
-enum { WKCA = 1, WQCA = 2, BKCA = 4, BQCA = 8 };
+enum
+{
+  WKCA = 1,
+  WQCA = 2,
+  BKCA = 4,
+  BQCA = 8
+};
 
-typedef struct {
+typedef struct
+{
   int move;
   int score;
 } S_MOVE;
 
-typedef struct {
+typedef struct
+{
   S_MOVE moves[MAXPOSITIONMOVES];
   int count;
 } S_MOVELIST;
 
-enum { HFNONE, HFALPHA, HFBETA, HFEXACT };
+enum
+{
+  HFNONE,
+  HFALPHA,
+  HFBETA,
+  HFEXACT
+};
 
-typedef struct {
+typedef struct
+{
   U64 posKey;
   int move;
   int score;
@@ -155,7 +203,8 @@ typedef struct {
   int flags;
 } S_HASHENTRY;
 
-typedef struct {
+typedef struct
+{
   S_HASHENTRY *pTable;
   int numEntries;
   int newWrite;
@@ -164,7 +213,8 @@ typedef struct {
   int cut;
 } S_HASHTABLE;
 
-typedef struct {
+typedef struct
+{
   int move;
   int castlePerm;
   int enPas;
@@ -173,7 +223,8 @@ typedef struct {
 
 } S_UNDO;
 
-typedef struct {
+typedef struct
+{
   int pieces[BRD_SQ_NUM];
   U64 pawns[3];
 
@@ -209,7 +260,8 @@ typedef struct {
 
 } S_BOARD;
 
-typedef struct {
+typedef struct
+{
   int starttime;
   int stoptime;
   int depth;
@@ -230,7 +282,8 @@ typedef struct {
 
 } S_SEARCHINFO;
 
-typedef struct {
+typedef struct
+{
   int UseBook;
 } S_OPTIONS;
 
